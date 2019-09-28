@@ -45,25 +45,20 @@ public class PlayerMovement : MonoBehaviour
             rb2d.velocity = Vector3.up * yInput *  (speed/Mathf.Sqrt(2))  + 
                             Vector3.right * xInput *  speed/Mathf.Sqrt(2) ;
 
-            if(yInput > 0)
-                transform.eulerAngles = new Vector3(0, 0,  -45 * xInput);
-            else
-                 transform.eulerAngles = new Vector3(0, 0,  -135 * xInput);    
+            transform.eulerAngles = new Vector3 (0, 0, Vector3.SignedAngle(Vector3.up, rb2d.velocity, Vector3.forward));
 
         }
         else if(Mathf.Abs(xInput) > 0) //move horizontally
         {   
-            rb2d.velocity = Vector3.right * xInput * speed ;
-            transform.eulerAngles = new Vector3(0, 0, - 90 * xInput);
+            rb2d.velocity = Vector3.right * xInput * speed * Time.deltaTime * 64;
+            Debug.Log(rb2d.velocity); 
+            transform.eulerAngles = new Vector3 (0, 0, Vector3.SignedAngle(Vector3.up, rb2d.velocity, Vector3.forward));
         }
         else if(Mathf.Abs(yInput) > 0) //move vertically
         {   
-            rb2d.velocity = Vector3.up * yInput * speed ;
+            rb2d.velocity = Vector3.up * yInput * speed * Time.deltaTime * 64 ;
             
-            if(yInput > 0)
-                transform.eulerAngles = new Vector3(0, 0, 0);
-            else
-                transform.eulerAngles = new Vector3(0, 0, 180);                
+            transform.eulerAngles = new Vector3 (0,0,Vector3.SignedAngle(Vector3.up, rb2d.velocity, Vector3.forward));            
         }
         else
         {
