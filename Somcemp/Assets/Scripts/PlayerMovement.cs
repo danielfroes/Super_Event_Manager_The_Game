@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         //Check if the player movement input was pressed
         if(Mathf.Abs(xInput) > 0 || Mathf.Abs(yInput) > 0)
         {
-            Debug.Log(legAnim.name);
+            //Debug.Log(legAnim.name);
             legAnim.SetBool("isMoving", true);
         }
         else

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public Item_Type holdByPlayer = Item_Type.Nothing;
+    public static Item_Type holdByPlayer = Item_Type.Nothing;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +18,7 @@ public class Inventory : MonoBehaviour
     }
 }
 
+[SerializeField]
 public enum Item_Type{
     Nothing,
     Salgados,
