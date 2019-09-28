@@ -5,7 +5,7 @@ using UnityEngine;
 public class QuestItem : MonoBehaviour {
 
     public Item_Type thisItem;
-    private SpriteRenderer spriteRenderer;
+    //public SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start() {
