@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class SatisfatisfactionBars : MonoBehaviour
 {
 
@@ -26,6 +27,12 @@ public class SatisfatisfactionBars : MonoBehaviour
     {
         if(!isDamaging)
             StartCoroutine("DealDamageToBar");
+
+
+        if(gameNightBar.fillAmount <= 0 || coffeBar.fillAmount <= 0 || palestraBar.fillAmount <= 0)
+        {
+            GameOver();
+        }
     }
 
     IEnumerator DealDamageToBar()
@@ -36,5 +43,11 @@ public class SatisfatisfactionBars : MonoBehaviour
         palestraBar.fillAmount -= damageToBarPalestra;
         yield return new WaitForSeconds(timeToDamage);  
         isDamaging = false;
+    }
+
+    void GameOver()
+    {
+        Timer.stopTimer = true;
+        SceneManager.LoadScene("GameOver");
     }
 }
