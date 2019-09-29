@@ -6,8 +6,9 @@ public class Quest_RetrieveItem : Quests {
 
     public Item_Type desiredItem;
 
-    void OnEnable() {
+    protected override void OnEnable() {
         //print("Buscando item " + desiredItem);
+        transform.GetChild(0).gameObject.SetActive(true);
         QuestItem.itemsReference[(int)desiredItem].questsRequirements++;
     }
 
