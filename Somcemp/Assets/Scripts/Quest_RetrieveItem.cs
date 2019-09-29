@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class Quest_RetrieveItem : Quests {
 
-    public Item_Type desiredItem;
+    public Item_Type desiredItem;    
+
+    private void Awake() {
+        questDescriptions = new string[] {
+            "A sala de coffee está precisando de mais coxinhas.",
+            "A sala de coffee está precisando de mais bebidas!"
+        };
+        thisQuestDescription = questDescriptions[(int)desiredItem - 1];
+    }
 
     protected override void OnEnable() {
         //print("Buscando item " + desiredItem);
         transform.GetChild(0).gameObject.SetActive(true);
         QuestItem.itemsReference[(int)desiredItem].questsRequirements++;
+        QuestManager.activeQuestsDescription.Add(thisQuestDescription);
     }
 
     // Update is called once per frame
