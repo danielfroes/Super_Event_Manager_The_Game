@@ -6,9 +6,10 @@ public class Quest_RetrieveItem : Quests {
 
     public Item_Type desiredItem;
 
-    // Start is called before the first frame update
-    void Start() {
-        
+    protected override void OnEnable() {
+        //print("Buscando item " + desiredItem);
+        transform.GetChild(0).gameObject.SetActive(true);
+        QuestItem.itemsReference[(int)desiredItem].questsRequirements++;
     }
 
     // Update is called once per frame
@@ -25,5 +26,9 @@ public class Quest_RetrieveItem : Quests {
     public override void CompleteQuest() {
         print("Quest Completa!");
         Inventory.holdByPlayer = Item_Type.Nothing;
+        QuestItem.itemsReference[(int)desiredItem].questsRequirements--;
+
+        QuestManager.questsAvailable.Add(this);
+        this.enabled = false;
     }
 }

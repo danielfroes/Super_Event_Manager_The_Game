@@ -4,14 +4,11 @@ using UnityEngine;
 
 public abstract class Quests : MonoBehaviour {
 
-    // Start is called before the first frame update
-    void Start() {
-        
+    protected virtual void OnEnable() {
+        transform.GetChild(0).gameObject.SetActive(true);
     }
-
-    // Update is called once per frame
-    void Update() {
-        
+    protected virtual void OnDisable() {
+        transform.GetChild(0).gameObject.SetActive(false);
     }
     protected virtual void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Player") {
