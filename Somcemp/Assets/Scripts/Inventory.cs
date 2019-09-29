@@ -56,5 +56,6 @@ public enum Item_Type{
     Nothing,
     Salgados,
     Bebidas,
+    Pilhas,
     Size
 }

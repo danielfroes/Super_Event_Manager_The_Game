@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     {
         legAnim = GetComponentInChildren<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
+        AudioManager.Play("Music");
+        
     }
     // Update is called once per frame
     void Update()
@@ -43,20 +45,20 @@ public class PlayerMovement : MonoBehaviour
         if(Mathf.Abs(xInput) > 0 && Mathf.Abs(yInput) > 0) //move diagonally 
         {
             rb2d.velocity = Vector3.up * yInput *  (speed/Mathf.Sqrt(2))  + 
-                            Vector3.right * xInput *  speed/Mathf.Sqrt(2) * Time.deltaTime * 64 ;
+                            Vector3.right * xInput *  speed/Mathf.Sqrt(2);// * Time.deltaTime * 64 ;
 
             transform.eulerAngles = new Vector3 (0, 0, Vector3.SignedAngle(Vector3.up, rb2d.velocity, Vector3.forward));
 
         }
         else if(Mathf.Abs(xInput) > 0) //move horizontally
         {   
-            rb2d.velocity = Vector3.right * xInput * speed * Time.deltaTime * 64;
+            rb2d.velocity = Vector3.right * xInput * speed;// * Time.deltaTime * 64;
             //Debug.Log(rb2d.velocity); 
             transform.eulerAngles = new Vector3 (0, 0, Vector3.SignedAngle(Vector3.up, rb2d.velocity, Vector3.forward));
         }
         else if(Mathf.Abs(yInput) > 0) //move vertically
         {   
-            rb2d.velocity = Vector3.up * yInput * speed * Time.deltaTime * 64 ;
+            rb2d.velocity = Vector3.up * yInput * speed;// * Time.deltaTime * 64 ;
             
             transform.eulerAngles = new Vector3 (0,0,Vector3.SignedAngle(Vector3.up, rb2d.velocity, Vector3.forward));            
         }

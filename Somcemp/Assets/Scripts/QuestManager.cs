@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class QuestManager : MonoBehaviour {
 
     public static int numOfActiveQuests = 0;
+    public float delayFirstQuestOnly;
     public float newQuestDelay;
 
     public Text uiTextReference;
@@ -25,6 +27,8 @@ public class QuestManager : MonoBehaviour {
         GetComponentsInChildren<Quests>(true, questsAvailable);
         maxNumberOfQuests = questsAvailable.Count;
         print("Quantidade de possíveis quests: " + maxNumberOfQuests);
+
+        delayCount = newQuestDelay - delayFirstQuestOnly;
     }
 
     void FixedUpdate() {
@@ -51,7 +55,7 @@ public class QuestManager : MonoBehaviour {
     }
 
     public void DisplayCurrentQuests() {
-        string txt = "Você precisa realizar as seguintes tarefas:\n";
+        string txt = "Conclua as seguintes tarefas:\n";
         foreach (string s in activeQuestsDescription)
             txt += s + "\n";
         uiTextReference.text = txt;

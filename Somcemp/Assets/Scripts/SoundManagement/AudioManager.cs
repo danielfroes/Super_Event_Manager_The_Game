@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
 
-	[SerializeField]private Sound[] sounds;
+	[SerializeField] private Sound[] _sounds;
+
+	[SerializeField] public static Sound[] sounds;
 	//private static AudioManager instance;
 	private static bool audioManagerExists;
 	void Start()
@@ -21,6 +23,9 @@ public class AudioManager : MonoBehaviour {
 	}
 	void Awake() { 
 		// creates a AudioSource Component for each sound in the list, copying its atributes
+		sounds = _sounds;
+
+	
 		foreach(Sound s in sounds)
 		{
 			s.source = gameObject.AddComponent<AudioSource>();
@@ -32,7 +37,7 @@ public class AudioManager : MonoBehaviour {
 		}
 	}
 
-	public void Play (string name)
+	public static void Play (string name)
 	{
 		foreach(Sound snd in sounds) // search for the sound in the sound array with the especified name
 		{	
@@ -47,7 +52,7 @@ public class AudioManager : MonoBehaviour {
 		Debug.LogWarning("Sound: "+ name + " not found!");// if it cant be found;
 	}
 	
-	public void Pause (string name)
+	public static void Pause (string name)
 	{
 		foreach(Sound snd in sounds) // search for the sound in the sound array with the especified name
 		{	

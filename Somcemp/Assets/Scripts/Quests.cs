@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Quests : MonoBehaviour {
 
+    public float questRegenAmount = 0.1f;
     public string[] questDescriptions;
     public string thisQuestDescription;
 

@@ -7,19 +7,14 @@ public class SatisfatisfactionBars : MonoBehaviour
 {
 
     [SerializeField] private Image gameNightBar;
-    [SerializeField] private Image palestraBar;
-    [SerializeField] private Image coffeBar;
-    public float damageToBarPalestra;
-    public float damageToBarGameNight;
-    public float damageToBarCoffe;
+    public float damageToBar;
     public float timeToDamage;
     private bool isDamaging;
     // Start is called before the first frame update
     void Start()
     {
         gameNightBar.fillAmount = 1;
-        palestraBar.fillAmount = 1;
-        coffeBar.fillAmount = 1;
+
     }
 
     // Update is called once per frame
@@ -29,7 +24,7 @@ public class SatisfatisfactionBars : MonoBehaviour
             StartCoroutine("DealDamageToBar");
 
 
-        if(gameNightBar.fillAmount <= 0 || coffeBar.fillAmount <= 0 || palestraBar.fillAmount <= 0)
+        if(gameNightBar.fillAmount <= 0 )
         {
             GameOver();
         }
@@ -38,11 +33,14 @@ public class SatisfatisfactionBars : MonoBehaviour
     IEnumerator DealDamageToBar()
     {
         isDamaging = true;
-        gameNightBar.fillAmount -= damageToBarGameNight;
-        coffeBar.fillAmount -= damageToBarCoffe;  
-        palestraBar.fillAmount -= damageToBarPalestra;
+        gameNightBar.fillAmount -= damageToBar;
+        
         yield return new WaitForSeconds(timeToDamage);  
         isDamaging = false;
+    }
+
+    public void HealBar(float amount) {
+        gameNightBar.fillAmount += amount;
     }
 
     void GameOver()
@@ -51,3 +49,4 @@ public class SatisfatisfactionBars : MonoBehaviour
         SceneManager.LoadScene("GameOver");
     }
 }
+    

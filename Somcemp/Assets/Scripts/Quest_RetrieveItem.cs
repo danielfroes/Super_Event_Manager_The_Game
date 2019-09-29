@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class Quest_RetrieveItem : Quests {
 
-    public Item_Type desiredItem;    
+    public Item_Type desiredItem;
+
+    private SatisfatisfactionBars satisfatisfaction;
 
     private void Awake() {
         questDescriptions = new string[] {
-            "A sala de coffee está precisando de mais coxinhas.",
-            "A sala de coffee está precisando de mais bebidas!"
+            "Bring me more Coxinhas!",
+            "Where is the Bebida?",
+            "Need Pilhas to play!!"
         };
         thisQuestDescription = questDescriptions[(int)desiredItem - 1];
+
+        satisfatisfaction = FindObjectOfType<SatisfatisfactionBars>();
     }
 
     protected override void OnEnable() {
@@ -36,6 +41,8 @@ public class Quest_RetrieveItem : Quests {
         print("Quest Completa!");
         Inventory.holdByPlayer = Item_Type.Nothing;
         QuestItem.itemsReference[(int)desiredItem].questsRequirements--;
+
+        satisfatisfaction.HealBar(questRegenAmount);
 
         QuestManager.questsAvailable.Add(this);
         this.enabled = false;
