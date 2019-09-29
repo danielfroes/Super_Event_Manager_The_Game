@@ -15,8 +15,17 @@ public class QuestItem : MonoBehaviour {
             itemActive = (value > 0);
         }
     }
-    private bool itemActive = false;
-
+    private bool m_itemActive = false;
+    private bool itemActive {
+        get {
+            return m_itemActive;
+        }
+        set {
+            m_itemActive = value;
+            iconeMinimapa.SetActive(value);
+        }
+    }
+    private GameObject iconeMinimapa;
     public Item_Type thisItem;
 
     //public SpriteRenderer spriteRenderer;
@@ -27,6 +36,7 @@ public class QuestItem : MonoBehaviour {
             print("Acho que n ta muito certo encontrar duas referencias de item com o mesmo tipo");
         itemsReference[(int)thisItem] = this;
         //print("Criada referencia para o item " + thisItem);
+        iconeMinimapa = transform.GetChild(0).gameObject;
     }
 
     protected void OnTriggerEnter2D(Collider2D collision) {

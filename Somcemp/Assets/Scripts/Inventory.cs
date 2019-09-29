@@ -18,16 +18,23 @@ public class Inventory : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         Transform[] transforms = GetComponentsInChildren<Transform>(true);
-        if (transforms.Length != itemsImages.Length+1) {    // O +1 existe pq a funcao retorna o proprio elemento
+
+        SetItemsImages(transforms);
+    }
+
+    //Configura as imagens filhas do player pra saber qual corresponde a qual tipo de item
+    private void SetItemsImages(Transform[] transforms) {
+
+        if (transforms.Length != itemsImages.Length+2) {    // O +2 existe pq a funcao retorna o proprio elemento
+                                                            // e existe o objeto para criar o icone do player no minimapa
             Debug.Log("ERRO! A quantidade de filhos do player é diferente da quantidade de tipos de itens existentes!");
             print("Filhos do player: " + transforms.Length + "Tipo de itens: " + itemsImages.Length);
             return;
         }
-        for (int i = 1; i < transforms.Length; ++i) {   // Por isso o i comeca em 1
+        for (int i = 1; i < transforms.Length-1; ++i) {   // Por isso o i comeca em 1
             itemsImages[i-1] = transforms[i].gameObject;    // E aqui é i-1
         }
     }
-
     // Update is called once per frame
     void Update()
     {
