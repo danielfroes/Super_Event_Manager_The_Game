@@ -7,15 +7,14 @@ public class QuestManager : MonoBehaviour {
     public static int numOfActiveQuests = 0;
     public float newQuestDelay;
 
-    public static List<Quest_RetrieveItem> questsAvailable;
+    public static List<Quests> questsAvailable;
     private int maxNumberOfQuests;
     private float delayCount;
 
     // Start is called before the first frame update
     void Start() {
-        GetComponentsInChildren<Quest_RetrieveItem>(true, questsAvailable);
-        if (questsAvailable == null)
-            print("NAO TEM QUEST DISPONIVEL!!!!");
+        questsAvailable = new List<Quests>();
+        GetComponentsInChildren<Quests>(true, questsAvailable);
         maxNumberOfQuests = questsAvailable.Count;
         print("Quantidade de possíveis quests: " + maxNumberOfQuests);
     }
@@ -32,8 +31,8 @@ public class QuestManager : MonoBehaviour {
         if (questsAvailable.Count <= 0) // Nao ha mais missoes para serem distribuidas
             return;
 
-        int randNum = RandNum();
-        Quest_RetrieveItem quest = questsAvailable[randNum];
+        //print("Ativando uma nova quest!");
+        Quests quest = questsAvailable[RandNum()];
         quest.enabled = true;
         questsAvailable.Remove(quest);
     }

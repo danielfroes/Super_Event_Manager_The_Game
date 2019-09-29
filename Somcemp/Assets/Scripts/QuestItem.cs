@@ -26,6 +26,7 @@ public class QuestItem : MonoBehaviour {
         if (itemsReference[(int)thisItem] != null)
             print("Acho que n ta muito certo encontrar duas referencias de item com o mesmo tipo");
         itemsReference[(int)thisItem] = this;
+        //print("Criada referencia para o item " + thisItem);
     }
 
     protected void OnTriggerEnter2D(Collider2D collision) {

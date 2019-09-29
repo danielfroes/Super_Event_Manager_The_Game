@@ -7,6 +7,7 @@ public class Quest_RetrieveItem : Quests {
     public Item_Type desiredItem;
 
     void OnEnable() {
+        //print("Buscando item " + desiredItem);
         QuestItem.itemsReference[(int)desiredItem].questsRequirements++;
     }
 
